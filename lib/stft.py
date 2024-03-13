@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb 5 14:10:16 2018
+Created on Mon Feb 5 14:10:16 2016
 
 @author: Gabriel Michau
 """
@@ -116,6 +116,7 @@ def spectroDB(S, factor=0.75, normS=None, thr=None):
     Returns
     -------
     Sdb : ARRAY of same size as S but in db relative to normS.
+    thr : FLOAT. The computed threshold on the Fourier Coefficients
 
     """
     if normS is None:
@@ -124,7 +125,7 @@ def spectroDB(S, factor=0.75, normS=None, thr=None):
     if thr is None:
         thr = factor*(np.nanmean(Sdb[:])-np.nanstd(Sdb[:]))
     Sdb[Sdb<thr]=thr
-    return Sdb
+    return Sdb,thr
 
 def spectroplot(Sdb,t,f,fig=None):
     """

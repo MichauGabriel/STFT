@@ -41,7 +41,7 @@ norm = stft.norm(S)
 ## Convert the spectrogram into dB and cut off very low negative coefficients so that the final color map has contrast where the coefficient have menaingfull values
 ## If doing several spectrograms => Compute the threshold once and use the same threshold for all spectrogamms.
 ## Otherwise, you don't have to specify the threshold (thr), just the contrast factor 
-Sdb = stft.spectroDB(S, factor=0.75, normS=norm, thr=None)
+Sdb,thr = stft.spectroDB(S, factor=0.75, normS=norm, thr=None)
 
 ## Get the plot
 fig = stft.spectroplot(Sdb,t,f,fig=None)
