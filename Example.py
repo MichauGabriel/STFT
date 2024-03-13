@@ -10,13 +10,17 @@ from lib import stft
 
 import matplotlib.pyplot as plt
 
-## Lets generate a speed signal with a speed dependent vibration component
+## For the purpose of examplifying the functions here,
+## lets generate a "speed" signal with a speed dependent vibration component for which we want to see 
+## the spectrogram
+
+#%% This cell is about generating the example signal
 
 ## Start speed
 f0 = 0 
 ## End speed
 f1 = 100
-## Length of the segments
+## Length of the 3 segments
 l = 100000
 ## Sampling rate in [s]
 dt = 1/2000 # sampling rate in s
@@ -33,7 +37,9 @@ y = 2*x + np.sin(phase)
 ## You can check the result by plotting the signal
 plt.plot(y)
 
-## Let's make the short time Frouier transfrom. 
+#%% This cell examplifies how to use the stft library
+
+## Let's compute the short time Frouier transfrom. 
 S, t, f = stft.stft(y,dt,wlen=1000,hop=1000//2,nfft=None,window='hamming',spectrum="single")
 
 ## Let's compute the norm of this spectrogram (if doing several spectrograms, this norm should be chosen once and used for all the spectrograms)
